@@ -1,6 +1,20 @@
 .project-list-item{
     min-height: 60px;
+    border: none;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    @media screen and (min-width: 768px){
+        .project-name-edit-btn-container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-right: 20vw;
+        }
+        .row.project-links{
+            margin: 0 !important;
+        }
 
+    }
     .project-name{
         font-weight: bold;
 
@@ -85,7 +99,24 @@
 
     .project-buttons {
         float: right;
-
+        .asset-download-buttons {
+            display: flex;
+            .btn-primary{
+                border-right: 2px solid transparent !important;
+                border-image: linear-gradient(rgba(255,255,255,0) 10%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 90%) !important;
+                border-image-slice: 1 !important;
+            }
+            .btn-default{
+                border-top-right-radius: 3px;
+                border-bottom-right-radius: 3px;
+            }
+            button{
+                background-color: black !important;
+                border: none !important;
+                padding: 10px 16px !important;
+            }
+            
+        }
         @media screen and (max-width: 768px){
 
             .asset-download-buttons {

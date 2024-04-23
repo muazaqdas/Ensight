@@ -87,9 +87,18 @@ html, body, section.main, .content, #wrapper, #page-wrapper{
     .sidebar-nav.navbar-collapse{
         width: 100%;
     }
-
+    
     .navbar-top-links li a.dropdown-toggle{
         height: 50px;
+    }
+    #side-menu{
+        .active, a:hover{
+            background-color: #3cceff;
+            color: white;
+            .sidebar-svg path, circle{
+                fill: white;
+            }
+        }
     }
 
     .user-profile{
