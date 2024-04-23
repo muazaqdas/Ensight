@@ -22,6 +22,7 @@ if settings.TESTING:
 urlpatterns = [
     url(r'^$', app_views.index, name='index'),
     url(r'^welcome/$', app_views.welcome, name='welcome'),
+    url(r'^welcome-aboard/$', app_views.welcome_aboard, name='welcome_aboard'),
     url(r'^dashboard/$', app_views.dashboard, name='dashboard'),
     url(r'^map/project/(?P<project_pk>[^/.]+)/task/(?P<task_pk>[^/.]+)/$', app_views.map, name='map'),
     url(r'^map/project/(?P<project_pk>[^/.]+)/$', app_views.map, name='map'),
@@ -41,6 +42,13 @@ urlpatterns = [
 
     url(r'^about/$', app_views.about, name='about'),
     url(r'^dev-tools/(?P<action>.*)$', dev_views.dev_tools, name='dev_tools'),
+
+# Enord Edit
+    url(r'^login/reset-password-form/$', app_views.resetpasswordform, name='reset_password_form'),
+    url(r'^login/reset-password-email-sent/$', app_views.resetpasswordemailsent, name='reset_password_email_sent'),
+    url(r'^login/reset-password/$', app_views.resetpassword, name='reset_password'),
+    url(r'^login/reset-password-success/$', app_views.resetpassworsuccess, name='reset_password_success'),
+    
 
     # TODO: add caching: https://docs.djangoproject.com/en/3.1/topics/i18n/translation/#note-on-performance
     url(r'^jsi18n/', JavaScriptCatalog.as_view(packages=['app']), name='javascript-catalog'),

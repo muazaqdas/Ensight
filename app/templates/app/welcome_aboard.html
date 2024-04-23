@@ -1,0 +1,20 @@
+{% extends "app/base.html" %}
+{% load i18n static settings %}
+
+
+{% block page-wrapper %}{{ SETTINGS.theme.html_after_header|safe }}
+    <div style="width: 100%; min-height: 95lvh; display: flex; flex-direction: column; justify-content: center; align-items: center; background-image: url('../../../static/app/img/blackBg.png') ;background-color: black;">
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px;">
+            <div style="width: 100%; padding: 20px; width: 300px;margin: 0 auto 2rem;">
+                <img style="width: 100%;" src="../../static/app/img/ensight+.svg"/>
+            </div>
+            <img style="width: 70px;" src="../../../static/app/img/success_tick.svg"/>
+            <div style="display: flex; flex-direction: column; gap: 6px; justify-content: center; align-items: center;">
+                <h1 style="color:#33CCFF; font-weight: 900; text-align: center;">Welcome Aboard, Pilot!</h1>
+                <p style="color: #8A92A6; text-align: center;">Your ensight+ account is ready for takeoff.<br/>
+                    You're now part of the flight crew. Start exploring your Ground Control Station,<br/> set up those initial missions, and take to the skies!</p>
+                <a style="padding: 1rem 3rem; background-color: #33CCFF; border-radius: 5px;color: white;" href="{% url 'dashboard' %}">Start Exploring ensight+</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -120,6 +120,7 @@ class ProjectList extends Paginated {
                 <Paginator {...this.state.pagination} {...this.props}>
                     <ul key="1" className={"list-group project-list " + (this.state.refreshing ? "refreshing" : "")}>
                         {this.state.projects.map(p => (
+                            <React.Fragment key={p.id}>
                             <ProjectListItem 
                                 ref={(domNode) => { this["projectListItem_" + p.id] = domNode }}
                                 key={p.id} 
@@ -127,7 +128,9 @@ class ProjectList extends Paginated {
                                 onDelete={this.handleDelete}
                                 onTaskMoved={this.handleTaskMoved}
                                 onProjectDuplicated={this.handleProjectDuplicated}
-                                history={this.props.history} /> 
+                                history={this.props.history} />
+                            <div style={{width:'100%',height:'2px', borderRadius:'6rem', background:'rgb(255,253,253)', background: 'linear-gradient(90deg, rgba(255,253,253,1) 0%, rgba(102,102,102,1) 50%, rgba(255,255,255,1) 100%)'}}></div>
+                            </React.Fragment>
                         ))}
                     </ul>
                 </Paginator>

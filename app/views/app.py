@@ -128,8 +128,8 @@ class FirstUserForm(forms.ModelForm):
 
 
 def welcome(request):
-    if User.objects.filter(is_superuser=True).count() > 0:
-        return redirect('index')
+    # if User.objects.filter(is_superuser=True).count() > 0:
+    #     return redirect('index')
 
     fuf = FirstUserForm()
 
@@ -143,14 +143,29 @@ def welcome(request):
 
             # Log-in automatically
             login(request, admin_user, 'django.contrib.auth.backends.ModelBackend')
-            return redirect('dashboard')
+            return redirect('welcome_aboard')
 
     return render(request, 'app/welcome.html',
                   {
                       'title': _('Welcome'),
                       'firstuserform': fuf
                   })
+def welcome_aboard(request):
 
+    return render(request, 'app/welcome_aboard.html')
+
+# Ensight Edit
+def resetpasswordform(request):
+    return render(request, 'app/registration/password_reset_form.html')
+
+def resetpasswordemailsent(request):
+    return render(request, 'app/registration/password_reset_form_email_sent.html')
+
+def resetpassword(request):
+    return render(request, 'app/registration/password_reset.html')
+
+def resetpassworsuccess(request):
+    return render(request, 'app/registration/password_reset_success.html')
 
 def handler404(request, exception):
     return render(request, '404.html', status=404)

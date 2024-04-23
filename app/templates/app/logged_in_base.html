@@ -52,9 +52,17 @@
 {% block navbar-sidebar %}
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
-            <ul class="nav" id="side-menu">
+            <ul  class="nav" id="side-menu">
                 <li>
-                    <a href="/dashboard/"><i class="fa fa-tachometer-alt fa-fw"></i> {% trans 'Dashboard' %}</a>
+                    <a href="/dashboard/">
+                        <!-- <i class="fa fa-th-large fa-fw"></i>  -->
+                        <!-- Dashboard icon -->
+                        <svg class="sidebar-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path opacity="0.4" d="M16.0755 2H19.4615C20.8637 2 22 3.14585 22 4.55996V7.97452C22 9.38864 20.8637 10.5345 19.4615 10.5345H16.0755C14.6732 10.5345 13.537 9.38864 13.537 7.97452V4.55996C13.537 3.14585 14.6732 2 16.0755 2Z" fill="#8A92A6"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.53852 2H7.92449C9.32676 2 10.463 3.14585 10.463 4.55996V7.97452C10.463 9.38864 9.32676 10.5345 7.92449 10.5345H4.53852C3.13626 10.5345 2 9.38864 2 7.97452V4.55996C2 3.14585 3.13626 2 4.53852 2ZM4.53852 13.4655H7.92449C9.32676 13.4655 10.463 14.6114 10.463 16.0255V19.44C10.463 20.8532 9.32676 22 7.92449 22H4.53852C3.13626 22 2 20.8532 2 19.44V16.0255C2 14.6114 3.13626 13.4655 4.53852 13.4655ZM19.4615 13.4655H16.0755C14.6732 13.4655 13.537 14.6114 13.537 16.0255V19.44C13.537 20.8532 14.6732 22 16.0755 22H19.4615C20.8637 22 22 20.8532 22 19.44V16.0255C22 14.6114 20.8637 13.4655 19.4615 13.4655Z" fill="#8A92A6"/>
+                        </svg>
+                        {% trans 'Dashboard' %}
+                    </a>
                 </li>
                 {% load processingnode_extras plugins %}
                 {% can_view_processing_nodes as view_nodes %}
@@ -63,7 +71,8 @@
 
                 {% get_plugins_main_menus as plugin_menus %}
                 {% for menu in plugin_menus %}
-                    <li>
+  
+                    <!-- <li>
                         <a href="{{menu.link}}"><i class="{{menu.css_icon}}"></i> {{menu.label}}{% if menu.has_submenu %}<span class="fa arrow"></span>{% endif %}</a>
 
                         {% if menu.has_submenu %}
@@ -75,12 +84,45 @@
                             {% endfor %}
                             </ul>
                         {% endif %}
+                    </li> -->
+                    <!---------- Ensight Edit ----------->
+                    {% if menu.label == "Diagnostic" %}
+                    <li>
+                        <a href="{{ menu.link }}">
+                            <!-- <i class="fa fa-chart-bar"></i>  -->
+                            <!-- Diagnostic icon -->
+                            <svg class="sidebar-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path opacity="0.4" d="M10.0833 15.9579H3.50777C2.67555 15.9579 2 16.6217 2 17.4393C2 18.2558 2.67555 18.9206 3.50777 18.9206H10.0833C10.9155 18.9206 11.5911 18.2558 11.5911 17.4393C11.5911 16.6217 10.9155 15.9579 10.0833 15.9579Z" fill="#8A92A6"/>
+                                <path opacity="0.4" d="M22 6.37855C22 5.56202 21.3245 4.89832 20.4934 4.89832H13.9178C13.0856 4.89832 12.4101 5.56202 12.4101 6.37855C12.4101 7.19617 13.0856 7.85988 13.9178 7.85988H20.4934C21.3245 7.85988 22 7.19617 22 6.37855Z" fill="#8A92A6"/>
+                                <path d="M8.87774 6.37856C8.87774 8.24523 7.33886 9.75821 5.43887 9.75821C3.53999 9.75821 2 8.24523 2 6.37856C2 4.51298 3.53999 3 5.43887 3C7.33886 3 8.87774 4.51298 8.87774 6.37856Z" fill="#8A92A6"/>
+                                <path d="M22 17.3992C22 19.2648 20.4611 20.7778 18.5611 20.7778C16.6622 20.7778 15.1223 19.2648 15.1223 17.3992C15.1223 15.5326 16.6622 14.0196 18.5611 14.0196C20.4611 14.0196 22 15.5326 22 17.3992Z" fill="#8A92A6"/>
+                            </svg>
+                            {{ menu.label }}
+                            {% if menu.has_submenu %}
+                                <span class="fa arrow"></span>
+                            {% endif %}
+                        </a>
+                        {% if menu.has_submenu %}
+                            <ul class="nav nav-second-level">
+                                {% for submenu in menu.submenu %}
+                                    <li>
+                                        <a href="{{ submenu.link }}">
+                                                <i class="diagnostic-icon"></i> <!-- Add your custom class for Diagnostic icon -->
+                                            {{ submenu.label }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
                     </li>
+                {% endif %}
+                
+
                 {% endfor %}
 
                 {% if view_nodes %}
                 <li>
-                    <a href="#"><i class="fa fa-wrench fa-fw"></i> {% trans 'Processing Nodes' %}<span class="fa arrow"></span></a>
+                    <!-- <a href="#"><i class="fa fa-wrench fa-fw"></i> {% trans 'Processing Nodes' %}<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         {% for node in nodes %}
                         <li>
@@ -93,7 +135,7 @@
                             <a href="{% url 'admin:nodeodm_processingnode_add' %}"><span class="fa fa-plus-circle"></span> {% trans 'Add New' %}</a>
                         </li>
                         {% endif %}
-                    </ul>
+                    </ul> -->
                     <!-- /.nav-second-level -->
                 </li>
                 {% endif %}
@@ -102,15 +144,15 @@
                 <li>
                     <a href="#"><i class="fa fa-cogs fa-fw"></i> {% trans 'Administration' %}<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        {% is_single_user_mode as hide_users %}
-                        {% if not hide_users %}
+                        <!-- {% is_single_user_mode as hide_users %} -->
+                        <!-- {% if not hide_users %} -->
                         <li>
                             <a href="/admin/auth/user/"><i class="fa fa-user fa-fw"></i> {% trans 'Accounts' %}</a>
                         </li>
                         <li>
                             <a href="/admin/auth/group/"><i class="fa fa-users fa-fw"></i> {% trans 'Groups' %}</a>
                         </li>
-                        {% endif %}
+                        <!-- {% endif %} -->
 
                         <li>
                             <a href="{% url 'admin:app_setting_change' SETTINGS.id %}"><i class="fa fa-magic fa-fw"></i> {% trans 'Brand' %}</a>
@@ -126,16 +168,25 @@
                         </li>
                     </ul>
                 </li>
-                {% endif %}
+                <!-- {% endif %} -->
 
-                {% is_dev_mode as dev_mode %}
+                <!-- {% is_dev_mode as dev_mode %}
                 {% if dev_mode and user.is_superuser %}
                 <li>
                     <a href="/dev-tools/"><i class="fa fa-bug fa-fw"></i> {% trans 'Developer Tools' %}</a>
                 </li>
-                {% endif %}
+                {% endif %} -->
+                
                 <li id="about-menu">
-                    <a href="/about/"><i class="fa fa-info-circle fa-fw"></i> {% trans 'About' %}</a>
+                    <a href="/about/">
+                        <!-- <i class="fa fa-info fa-fw"></i>  -->
+                        <!-- About icon -->
+                        <svg class="sidebar-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 10C9 9.44772 9.44772 9 10 9H12C12.5523 9 13 9.44772 13 10V20L15 21H13H10C9.44772 21 9 20.5523 9 20V10Z" fill="#8A92A6"/>
+                            <circle opacity="0.5" cx="11" cy="5" r="2" fill="#8A92A6"/>
+                        </svg>
+                        {% trans 'About' %}
+                    </a>
                 </li>
             </ul>
         </div>

@@ -2,6 +2,16 @@
 {% load i18n %}
 
 {% block registration_content %}
-    <h3>{% trans "You have been logged out." %}</h3>
-    <p><a href="{% url 'login' %}">{% trans 'Log In' %}</a></p>
+    <div style="display: flex; min-height: 95lvh;flex-direction: column; gap: 3rem ;justify-content: center; align-items: center; background-image: url('../../../static/app/img/loginBg.svg')" >
+        <div style="width: 100%; padding: 20px; width: 300px; margin-top: 10rem;">
+            <img style="width: 100%;" src="../../../static/app/img/ensight+.svg" />
+        </div>
+        <div>
+            <h1 style="color: #33CCFF; font-weight: 900; text-align: center;">See You Soon, Pilot!</h1>
+            <h3 style="color: white; text-transform: capitalize; text-align: center;">{% trans "You have been logged out." %}</h3>
+        </div>
+        <button class="btn" style="background-color: #33CCFF;">
+            <a style="color: white;" href="{% url 'login' %}">{% trans 'Back to Log In' %}</a>
+        </button>
+    </div>
 {% endblock %}

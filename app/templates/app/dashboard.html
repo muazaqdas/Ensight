@@ -28,7 +28,7 @@
 		{% include "quota.html" %}
 
 		{% if no_tasks %}
-			<h3>{% trans 'Welcome!' %} ☺</h3>
+			<!-- <h3>{% trans 'Welcome!' %} ☺</h3>
 			{% trans 'Select Images and GCP' as upload_images %}
 			<p>
 				{% blocktrans %}To create a map, press the "{{ upload_images }}" button, or drag and drop some images into a project.{% endblocktrans %}
@@ -40,10 +40,11 @@
 					<li>{% trans 'For great 3D, images must overlap by 83%' %}</li>
 					<li>{% gcp_docs_link as gcp_link %}{% blocktrans with link_start=gcp_link|safe link_end='</a>' %}A {{link_start}}GCP File{{link_end}} is optional, but can increase georeferencing accuracy{% endblocktrans %}</li>
 				</ul>
-			</p>
+			</p> -->
 		{% endif %}
 		
-		<div id="dashboard-app" data-dashboard></div>
+		<!-- Ensight Edit -->
+		<div id="dashboard-app" data-dashboard style="margin-top: -9px;"></div>
 
 	{% endif %}
 {% endblock %}

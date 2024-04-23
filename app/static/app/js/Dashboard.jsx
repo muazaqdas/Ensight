@@ -58,13 +58,22 @@ class Dashboard extends React.Component {
     return (
       <Router basename="/dashboard">
         <div>
-          <div className="text-right add-button">
-            <button type="button" 
-                    className="btn btn-primary btn-sm"
-                    onClick={this.handleAddProject}>
-              <i className="glyphicon glyphicon-plus"></i>
-              {_("Add Project")}
-            </button>
+          <div 
+          // Ensight Edit
+            style={{display:"flex", flexDirection:"row",borderRadius:"0px 0px 10px 10px",padding:"2rem 2.5rem", color:"white",backgroundImage:`url("/static/app/img/WelcomeBanner.png")`, width:"100%", justifyContent:"space-between", alignItems:"center"}} 
+            className="text-right add-button">
+            <div style={{textAlign:"start",paddingLeft:"1rem"}}>
+              <h2 style={{fontWeight:"900"}}>Hello Pilot !</h2>
+              <p>Where Are We Flying Today?</p>
+            </div>
+            <div className=''>
+              <button style={{width:"fit", color:"white", backgroundColor:"rgba(255, 255, 255, 0.1)"}} type="button" 
+                      className="btn btn-sm"
+                      onClick={this.handleAddProject}>
+                <i className="glyphicon glyphicon-plus" style={{paddingRight:"1rem"}}></i>
+                {_("Add Project")}
+              </button>
+            </div>
           </div>
 
           <EditProjectDialog 

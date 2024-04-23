@@ -24,13 +24,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="WebODM Contributors">
-    <link rel="icon" type="image/png" href="{% settings_image_url 'app_logo_favicon' %}" sizes="32x32">
+    <!-- Ensight Edit -->
+    <link rel="icon" type="image/png" href="../../static/app/img/favicon.png" sizes="32x32">
+    <!-- <link rel="icon" type="image/png" href="{% settings_image_url 'app_logo_favicon' %}" sizes="32x32"> -->
 
     <link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap.min.css' %}" />
 
     <link href="{% static 'app/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'app/css/metisMenu.min.css' %}" rel="stylesheet">
     <link href="{% static 'app/css/sb-admin-2.css' %}" rel="stylesheet">
+    <!-- Ensight Edit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
     {% block extra-headers %}{% endblock %}
 
     <script src="{% static 'app/js/vendor/modernizr-2.8.3.min.js' %}"></script>
@@ -48,8 +55,9 @@
     {% get_plugins_js_includes %}
     {% get_plugins_css_includes %}
     {% endautoescape %}
-
-    <title>{{title|default:"Login"}} - {{ SETTINGS.app_name }}</title>
+    <!-- <title>{{title|default:"Login"}} - {{ SETTINGS.app_name }}</title> -->
+    <!-- Ensight Edit -->
+    <title>{{title|default:"Login"}} - ensight+</title>
 
     {% cache 3600 theme_css %}
     <style type="text/css">
@@ -62,7 +70,7 @@
     <!-- Hide top nav bar -->
     <style type="text/css">
         .navbar-header { display: none; }
-        #navbar-top .navbar-default.sidebar{ top: 0; position: fixed; margin-top: 1px; }
+        #navbar-top .navbar-default.sidebar{ top: 0; position: fixed; margin-top: 1px;}
         #navbar-top { height: 0; min-height: 0; }
         .map-view { height: calc(100% + 30px) !important; }
         .model-view { height: calc(100% + 50px) !important; }
@@ -73,7 +81,7 @@
         {{ SETTINGS.theme.css|safe }}
     </style>
 </head>
-<body data-admin-utc-offset="{% now "Z" %}">
+<body data-admin-utc-offset="{% now "Z" %}" >
 {% if desktop_mode %}
     <div class='topLine' style="background: #e7e7e7; position: absolute; left: 0; right: 0; height: 1px;"></div>
 {% endif %}
@@ -82,7 +90,7 @@
     <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <div id="wrapper">
+    <div id="wrapper" >
         {{ SETTINGS.theme.html_before_header|safe }}
 
         <nav id="navbar-top" class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -96,11 +104,15 @@
                 {% block navbar-top-links %}{% endblock %}
             
                 {% if '/public/task/' in request.path and request.user.is_anonymous and SETTINGS.organization_website %}
-                    <a class="navbar-brand" href="{{ SETTINGS.organization_website }}"><img src="{% settings_image_url 'app_logo_36' %}" alt="{{ SETTINGS.app_name }}" /></a>
-                    <a class="navbar-link" href="{{ SETTINGS.organization_website }}"><p class="navbar-text">{{ SETTINGS.app_name }}</p></a>
+                <!-- Ensight Edit -->
+                    <a class="navbar-brand" href="{{ SETTINGS.organization_website }}"><img src="../../static/app/img/logo512.png" alt="ensight+" /></a>
+                    <!-- <a class="navbar-brand" href="{{ SETTINGS.organization_website }}"><img src="{% settings_image_url 'app_logo_36' %}" alt="{{ SETTINGS.app_name }}" /></a> -->
+                    <!-- <a class="navbar-link" href="{{ SETTINGS.organization_website }}"><p class="navbar-text">{{ SETTINGS.app_name }}</p></a> -->
                 {% else %}
-                    <a class="navbar-brand" href="/"><img src="{% settings_image_url 'app_logo_36' %}" alt="{{ SETTINGS.app_name }}" /></a>
-                    <a class="navbar-link" href="/"><p class="navbar-text">{{ SETTINGS.app_name }}</p></a>
+                <!-- Ensight Edit -->
+                    <a class="navbar-brand" href="/"><img style="width: 120px;" src="../../static/app/img/ensight+.svg" alt="ensight+" /></a>
+                    <!-- <a class="navbar-brand" href="/"><img src="{% settings_image_url 'app_logo_36' %}" alt="{{ SETTINGS.app_name }}" /></a> -->
+                    <!-- <a class="navbar-link" href="/"><p class="navbar-text">{{ SETTINGS.app_name }}</p></a> -->
                 {% endif %}
             </div>
 

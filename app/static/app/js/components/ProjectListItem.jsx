@@ -17,6 +17,7 @@ import Tags from '../classes/Tags';
 import exifr from '../vendor/exifr';
 import { _, interpolate } from '../classes/gettext';
 import $ from 'jquery';
+import editIconImg from '../../img/edit-icon.svg'
 
 class ProjectListItem extends React.Component {
   static propTypes = {
@@ -638,13 +639,15 @@ class ProjectListItem extends React.Component {
                       className="btn btn-primary btn-sm"
                       onClick={this.handleUpload}
                       ref={this.setRef("uploadButton")}>
-                  <i className="glyphicon glyphicon-upload"></i>
-                  {_("Select Images and GCP")}
+                  {/* <i className="glyphicon glyphicon-upload"></i> */}
+                  {/* {_("Select Images and GCP")} */}
+                  {_("Select Image")}
                 </button>
                 <button type="button" 
                       className="btn btn-default btn-sm"
                       onClick={this.handleImportTask}>
-                  <i className="glyphicon glyphicon-import"></i> {_("Import")}
+                  {/* <i className="glyphicon glyphicon-import"></i>  */}
+                  {_("Import")}
                 </button>
                 {this.state.buttons.map((button, i) => <React.Fragment key={i}>{button}</React.Fragment>)}
               </div>
@@ -658,85 +661,91 @@ class ProjectListItem extends React.Component {
               Cancel Upload
             </button> 
           </div>
+          <div className={numTasks > 0 ? '':'project-name-edit-btn-container'}>
+            <div className="project-name">
+              {data.name}
+              {userTags.length > 0 ? 
+                userTags.map((t, i) => <div key={i} className="tag-badge small-badge" onClick={this.handleTagClick(t)}>{t}</div>)
+                : ""}
+            </div>
+            <div className="row project-links">
+              {numTasks > 0 ? 
+                <span>
+                  <i className='fa fa-tasks'></i>
+                  <a href="javascript:void(0);" onClick={this.toggleTaskList}>
+                    {interpolate(_("%(count)s Tasks"), { count: numTasks})} <i className={'fa fa-caret-' + (this.state.showTaskList ? 'down' : 'right')}></i>
+                  </a>
+                </span>
+                : ""}
+              
+              {this.state.showTaskList && numTasks > 1 ? 
+                <div className="task-filters">
+                  <div className="btn-group">
+                    {this.state.selectedTags.length || this.state.filterText !== "" ? 
+                      <a className="quick-clear-filter" href="javascript:void(0)" onClick={this.clearFilter}>×</a>
+                    : ""}
+                    <i className='fa fa-filter'></i>
+                    <a href="javascript:void(0);" onClick={this.onOpenFilter} className="dropdown-toggle" data-toggle-outside data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {_("Filter")}
+                    </a>
+                    <ul className="dropdown-menu dropdown-menu-right filter-dropdown">
+                    <li className="filter-text-container">
+                      <input type="text" className="form-control filter-text theme-border-secondary-07" 
+                            value={this.state.filterText}
+                            ref={domNode => {this.filterTextInput = domNode}}
+                            placeholder=""
+                            spellCheck="false"
+                            autoComplete="false"
+                            onChange={this.handleFilterTextChange} />
+                    </li>
+                    {filterTags.map(t => <li key={t} className="tag-selection">
+                      <input type="checkbox"
+                          className="filter-checkbox"
+                          id={"filter-tag-" + data.id + "-" + t}
+                          checked={this.state.selectedTags.indexOf(t) !== -1}
+                          onChange={this.toggleTag(t)} /> <label className="filter-checkbox-label" htmlFor={"filter-tag-" + data.id + "-" + t}>{t}</label>
+                    </li>)}
 
-          <div className="project-name">
-            {data.name}
-            {userTags.length > 0 ? 
-              userTags.map((t, i) => <div key={i} className="tag-badge small-badge" onClick={this.handleTagClick(t)}>{t}</div>)
+                    <li className="clear-container"><input type="button" onClick={this.clearFilter} className="btn btn-default btn-xs" value={_("Clear")}/></li>
+                    </ul>
+                  </div>
+                  <div className="btn-group">
+                    <i className='fa fa-sort-alpha-down'></i>
+                    <a href="javascript:void(0);" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {_("Sort")}
+                    </a>
+                    <SortPanel selected="-created_at" items={this.sortItems} onChange={this.sortChanged} />
+                  </div>
+                </div> : ""}
+
+                {numTasks > 0 ? 
+                  [<i key="edit-icon" className='fa fa-globe'></i>
+                  ,<a key="edit-text" href="javascript:void(0);" onClick={this.viewMap}>
+                    {_("View Map")}
+                  </a>]
+                : ""}
+                
+              {canEdit ? 
+                  [<img src={editIconImg} alt='edit-icon' />
+                  ,<a style={{margin:'auto 0 !important'}} key="edit-text" href="javascript:void(0);" onClick={this.handleEditProject}> {_("Edit")}
+                  </a>]
               : ""}
+              {/* {canEdit ? 
+                  [<i key="edit-icon" className='far fa-edit'></i>
+                  ,<a key="edit-text" href="javascript:void(0);" onClick={this.handleEditProject}> {_("Edit")}
+                  </a>]
+              : ""} */}
+
+              {!canEdit && !data.owned ? 
+                [<i key="edit-icon" className='far fa-eye-slash'></i>
+                ,<a key="edit-text" href="javascript:void(0);" onClick={this.handleHideProject(deleteWarning, this.handleDelete)}> {_("Delete")}
+                </a>]
+              : ""}
+
+            </div>
           </div>
           <div className="project-description">
             {data.description}
-          </div>
-          <div className="row project-links">
-            {numTasks > 0 ? 
-              <span>
-                <i className='fa fa-tasks'></i>
-                <a href="javascript:void(0);" onClick={this.toggleTaskList}>
-                  {interpolate(_("%(count)s Tasks"), { count: numTasks})} <i className={'fa fa-caret-' + (this.state.showTaskList ? 'down' : 'right')}></i>
-                </a>
-              </span>
-              : ""}
-            
-            {this.state.showTaskList && numTasks > 1 ? 
-              <div className="task-filters">
-                <div className="btn-group">
-                  {this.state.selectedTags.length || this.state.filterText !== "" ? 
-                    <a className="quick-clear-filter" href="javascript:void(0)" onClick={this.clearFilter}>×</a>
-                  : ""}
-                  <i className='fa fa-filter'></i>
-                  <a href="javascript:void(0);" onClick={this.onOpenFilter} className="dropdown-toggle" data-toggle-outside data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {_("Filter")}
-                  </a>
-                  <ul className="dropdown-menu dropdown-menu-right filter-dropdown">
-                  <li className="filter-text-container">
-                    <input type="text" className="form-control filter-text theme-border-secondary-07" 
-                          value={this.state.filterText}
-                          ref={domNode => {this.filterTextInput = domNode}}
-                          placeholder=""
-                          spellCheck="false"
-                          autoComplete="false"
-                          onChange={this.handleFilterTextChange} />
-                  </li>
-                  {filterTags.map(t => <li key={t} className="tag-selection">
-                    <input type="checkbox"
-                        className="filter-checkbox"
-                        id={"filter-tag-" + data.id + "-" + t}
-                        checked={this.state.selectedTags.indexOf(t) !== -1}
-                        onChange={this.toggleTag(t)} /> <label className="filter-checkbox-label" htmlFor={"filter-tag-" + data.id + "-" + t}>{t}</label>
-                  </li>)}
-
-                  <li className="clear-container"><input type="button" onClick={this.clearFilter} className="btn btn-default btn-xs" value={_("Clear")}/></li>
-                  </ul>
-                </div>
-                <div className="btn-group">
-                  <i className='fa fa-sort-alpha-down'></i>
-                  <a href="javascript:void(0);" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {_("Sort")}
-                  </a>
-                  <SortPanel selected="-created_at" items={this.sortItems} onChange={this.sortChanged} />
-                </div>
-              </div> : ""}
-
-              {numTasks > 0 ? 
-                [<i key="edit-icon" className='fa fa-globe'></i>
-                ,<a key="edit-text" href="javascript:void(0);" onClick={this.viewMap}>
-                  {_("View Map")}
-                </a>]
-              : ""}
-              
-            {canEdit ? 
-                [<i key="edit-icon" className='far fa-edit'></i>
-                ,<a key="edit-text" href="javascript:void(0);" onClick={this.handleEditProject}> {_("Edit")}
-                </a>]
-            : ""}
-
-            {!canEdit && !data.owned ? 
-              [<i key="edit-icon" className='far fa-eye-slash'></i>
-              ,<a key="edit-text" href="javascript:void(0);" onClick={this.handleHideProject(deleteWarning, this.handleDelete)}> {_("Delete")}
-              </a>]
-            : ""}
-
           </div>
         </div>
         <i className="drag-drop-icon fa fa-inbox"></i>
