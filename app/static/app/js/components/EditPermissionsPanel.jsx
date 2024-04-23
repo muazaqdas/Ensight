@@ -244,15 +244,15 @@ class EditPermissionsPanel extends React.Component {
 
     return (
       <div className="edit-permissions-panel">
-        <div className="form-group">
-          <label className="col-sm-2 control-label">{_("Permissions")}</label>
-          <div className="col-sm-10">
+        <div className="form-group" style={{display:'flex', flexDirection:'column', gap:'6px'}}>
+          <label style={{fontWeight:'300'}} className="col-sm-2 control-label">{_("Permissions")}</label>
+          <div className="" style={{padding:'0 15px'}}>
             <ErrorMessage bind={[this, 'error']} />
 
             {this.state.loading ? 
             <i className="fa fa-circle-notch fa-spin fa-fw perms-loading"></i>
             : [permissions, <div key="add-new">
-                <button onClick={this.addNewPermission} className="btn btn-default btn-sm add-new"><i className="fa fa-user-plus"></i></button>
+                <button onClick={this.addNewPermission} style={{margin:'0 auto'}} className="btn btn-default btn-sm add-new"><i className="fa fa-user-plus"></i></button>
             </div>]}
           </div>
         </div>

@@ -6,6 +6,7 @@
         position: relative;
         margin-bottom: 4px;
         display: flex;
+        gap: 6px;
     }
     .user-indicator{
         position: absolute;
@@ -29,6 +30,9 @@
 
     .username{
         padding-left: 30px;
+        background-color: white !important;
+        border-radius: 9px;
+        border: 1px solid #A3A3A3 !important;
     }
 
     .username-container{
@@ -69,9 +73,19 @@
     }
     .role-container{
         flex-grow: 0.33;
+        select{
+            background-color: white;
+            border-radius: 9px;
+            border: 1px solid #A3A3A3 !important;
+        }
+
     }
 
     .add-new{
         margin-top: 4px;
+        border-radius: 9px;
+        padding: 6px 24px;
+        background-color: black;
+        border: none;
     }
 }

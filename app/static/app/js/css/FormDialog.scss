@@ -3,3 +3,52 @@
         margin-right: 4px;
     }
 }
+// Ensight Edit
+.modal-dialog{
+    margin: 10% auto 0 !important;
+}
+.modal.form-dialog{
+    backdrop-filter: blur(3.5px);
+}
+.modal-header{
+    border-bottom: none;
+}
+.modal-title{
+    font-weight: 900;
+}
+.modal-footer{
+    border-top: none;
+}
+.modal-body{
+    // padding-top: 0;
+    // padding-bottom: 0;
+}
+.pull-center{
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    align-items: center;
+}
+.cancelBtn{
+    border-radius: 9px;
+    background-color: white;
+    border: solid 1px black;
+    color: black;
+}
+.cancelBtn:hover{
+    background-color: black;
+    color: white;
+}
+.saveBtn{
+    border-radius: 9px;
+    background-color: black;
+    color: white;
+    border: solid 1px black;
+}
+.saveBtn:hover{
+    background-color: rgba(0,0,0,0.9);
+}
+.saveBtn:focus, .cancelBtn:focus{
+    border-style: none !important;
+    outline: none !important;
+}

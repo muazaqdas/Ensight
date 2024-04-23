@@ -12,4 +12,14 @@
             border-bottom-right-radius: 0;
         }
     }
+    .col-sm-2
+    {
+        .control-label
+        {
+            font-weight: lighter !important;
+        }
+    }
+    .form-control.tags-field{
+        
+    }
 }

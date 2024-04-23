@@ -161,7 +161,8 @@ class FormDialog extends React.Component {
         if (this.props.deleteAction){
             leftButtons.push(<button 
                 disabled={this.state.deleting}
-                className="btn btn-danger"
+                // className="btn btn-danger"
+                className="btn cancelBtn"
                 key="delete" 
                 onClick={this.handleDelete}>
                 {this.state.deleting ? 
@@ -169,7 +170,8 @@ class FormDialog extends React.Component {
                         <i className="fa fa-circle-notch fa-spin"></i> {_("Deleting...")}
                     </span>
                 :   <span>
-                        <i className="fa fa-trash"></i> {_("Delete")}
+                        {/* <i className="fa fa-trash"></i>  */}
+                        {_("Delete")}
                     </span>}
             </button>);
         }
@@ -188,28 +190,32 @@ class FormDialog extends React.Component {
                     <button type="button" className="close" onClick={this.hide}><span>&times;</span></button>
                     <h4 className="modal-title">{this.props.title}</h4>
                   </div>
+                  <div style={{width:'100%',height:'1.6px', borderRadius:'6rem',background: 'rgb(51,204,255)', background: 'linear-gradient(90deg, rgba(51,204,255,0.2) 0%, rgba(51,204,255,1) 50%, rgba(51,204,255,0.2) 100%)'}}></div>
                   <div className="modal-body">
                     <ErrorMessage bind={[this, "error"]} />
                     <div className="form-horizontal" onSubmit={this.handleSave}>
                       {this.props.children}
                     </div>
                   </div>
-                  <div className="modal-footer">
-                    <div className="pull-right">
-                        <button type="button" className="btn btn-default" onClick={this.hide} disabled={this.state.saving}>{_("Cancel")}</button>
-                        <button type="button" className="btn btn-primary save" onClick={this.handleSave} disabled={this.state.saving}>
+                  {leftButtons.length > 0 && <div style={{width:'100%',height:'2px', borderRadius:'6rem',background: 'rgb(51,204,255)', background: 'linear-gradient(90deg, rgba(51,204,255,0.2) 0%, rgba(51,204,255,1) 50%, rgba(51,204,255,0.2) 100%)'}}></div>}
+                  <div className="modal-footer"  style={leftButtons.length > 0 ?{display:'flex', flexDirection:'row-reverse',justifyContent:'space-between'}:{}}>
+                    <div className="pull-center">
+                    {/* Ensight Edit */}
+                        <button type="button" className="btn cancelBtn" onClick={this.hide} disabled={this.state.saving}>{_("Cancel")}</button>
+                        <button type="button" className="btn saveBtn" onClick={this.handleSave} disabled={this.state.saving}>
                             {this.state.saving ? 
                                 <span>
                                     <i className="fa fa-circle-notch fa-spin"></i> {this.props.savingLabel}
                                 </span>
                             :   <span>
-                                    <i className={this.props.saveIcon}></i> {this.props.saveLabel}
+                                    {/* <i className={this.props.saveIcon}></i>  */}
+                                    {this.props.saveLabel}
                                 </span>}
                         </button>
                     </div>
                     
                     {leftButtons.length > 0 ?
-                        <div className="text-left">
+                        <div className="text-left" style={{display:'flex', gap: '16px'}}>
                             {leftButtons}
                         </div>
                     : ""}
