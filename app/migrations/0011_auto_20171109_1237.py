@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
                 ('primary', colorfield.fields.ColorField(default='#2c3e50', help_text='Most text, icons, and borders.', max_length=18)),
                 ('secondary', colorfield.fields.ColorField(default='#ffffff', help_text='The main background color, and text color of some buttons.', max_length=18)),
                 ('tertiary', colorfield.fields.ColorField(default='#18bc9c', help_text='Navigation links.', max_length=18)),
-                ('button_primary', colorfield.fields.ColorField(default='#2c3e50', help_text='Primary button color.', max_length=18)),
+                ('button_primary', colorfield.fields.ColorField(default='#3cceff', help_text='Primary button color.', max_length=18)),
                 ('button_default', colorfield.fields.ColorField(default='#95a5a6', help_text='Default button color.', max_length=18)),
                 ('button_danger', colorfield.fields.ColorField(default='#e74c3c', help_text='Delete button color.', max_length=18)),
                 ('header_background', colorfield.fields.ColorField(default='#18bc9c', help_text="Background color of the site's header.", max_length=18)),

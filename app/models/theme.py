@@ -22,7 +22,7 @@ class Theme(models.Model):
     secondary = ColorField(default='#ffffff', help_text=_("The main background color, and text color of some buttons."), verbose_name=_("Secondary"))
     tertiary = ColorField(default='#3498db', help_text=_("Navigation links."), verbose_name=_("Tertiary"))
 
-    button_primary = ColorField(default='#2c3e50', help_text=_("Primary button color."), verbose_name=_("Button Primary"))
+    button_primary = ColorField(default='#3cceff', help_text=_("Primary button color."), verbose_name=_("Button Primary"))
     button_default = ColorField(default='#95a5a6', help_text=_("Default button color."), verbose_name=_("Button Default"))
     button_danger = ColorField(default='#e74c3c', help_text=_("Delete button color."), verbose_name=_("Button Danger"))
 

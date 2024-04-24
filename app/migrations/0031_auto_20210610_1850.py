@@ -330,7 +330,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='theme',
             name='button_primary',
-            field=colorfield.fields.ColorField(default='#2c3e50', help_text='Primary button color.', max_length=18, verbose_name='Button Primary'),
+            field=colorfield.fields.ColorField(default='#3cceff', help_text='Primary button color.', max_length=18, verbose_name='Button Primary'),
         ),
         migrations.AlterField(
             model_name='theme',
