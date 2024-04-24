@@ -12,8 +12,14 @@
         }
         .row.project-links{
             margin: 0 !important;
+            
         }
-
+        
+    }
+    .row.project-links{
+        a{
+            color: black;
+        }
     }
     .project-name{
         font-weight: bold;
