@@ -10,11 +10,13 @@ body {
 
 #wrapper {
     width: 100%;
+    background-color: #070707;
 }
 
 #page-wrapper {
     padding: 0 15px;
     min-height: 568px;
+    background-color: #ffff;
 }
 
 @media(min-width:768px) {
@@ -24,7 +26,6 @@ body {
         border-left: 1px solid #e7e7e7;
     }
 }
-
 .navbar-top-links {
     margin-right: 0;
 }
@@ -360,4 +361,75 @@ table.dataTable thead .sorting:after {
 
 .panel-yellow a:hover {
     color: #df8a13;
+}
+
+/* Ensight Edit */
+#ensight-footer{
+    display: flex;
+    color: #8A92A6 !important;
+    justify-content: space-between;
+    padding: 1.5rem 3rem;
+    a{
+        color: #8A92A6 !important;
+    }
+    p{
+        margin: 0!important;
+    }
+}
+.about-section{
+    min-height: 100lvh;
+    background-color: #070707;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    color: white;
+    padding: 0 8rem;
+    border-left: 1px solid #fff;
+
+    .underDevelopment{
+        color: white;
+        border: 2px solid #b52b27;
+        width: 100%;
+        padding: 3rem 5rem;
+        border-radius: 12px;
+
+    }
+    .heading{
+        img{
+            width: 240px;
+        }
+        p{
+            font-size: 1.6rem;
+        }
+    }
+    p{
+        font-size: 2.5rem;
+        line-height: 2;
+    }
+    .divider{
+        height: 1.6px;
+        border-radius: 6rem !important;
+        width: 70vw;
+        background: rgb(255,255,255);
+        background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 50%, rgba(0,0,0,1) 100%);
+    }
+    .item-container{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        z-index: 3;
+        flex-wrap: wrap;
+    }
+    .item{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        p{
+            font-size: 2rem;   
+        }
+    }
 }
