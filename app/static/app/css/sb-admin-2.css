@@ -386,7 +386,6 @@ table.dataTable thead .sorting:after {
     gap: 3rem;
     color: white;
     padding: 0 8rem;
-    border-left: 1px solid #fff;
 
     .underDevelopment{
         color: white;
