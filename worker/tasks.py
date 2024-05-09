@@ -26,6 +26,7 @@ from django.utils import timezone
 from datetime import timedelta
 import redis
 
+
 logger = get_task_logger("app.logger")
 redis_client = redis.Redis.from_url(settings.CELERY_BROKER_URL)
 
@@ -44,16 +45,16 @@ def update_nodes_info():
         # Workaround for mysterious "webodm_node-odm-1" or "webodm-node-odm-1" hostname switcharoo on Mac
         # Technically we already check for the correct hostname during setup, 
         # but sometimes that doesn't work?
-        check_hostname = 'webodm_node-odm-1'
+        check_hostname = 'ensight-node-odm-1'
         if processing_node.hostname == check_hostname and not processing_node.is_online():
             try:
                 socket.gethostbyname(processing_node.hostname)
             except:
                 # Hostname was invalid, try renaming
-                processing_node.hostname = 'webodm-node-odm-1'
+                processing_node.hostname = 'ensight-node-odm-1'
                 processing_node.update_node_info()
                 if processing_node.is_online():
-                    logger.info("Found and fixed webodm_node-odm-1 hostname switcharoo")
+                    logger.info("Found and fixed ensight_node-odm-1 hostname switcharoo")
                 else:
                     processing_node.hostname = check_hostname
                 processing_node.save()

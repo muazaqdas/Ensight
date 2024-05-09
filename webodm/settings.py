@@ -63,7 +63,7 @@ ALLOWED_HOSTS = ['*']
 
 # Branding
 # APP_NAME = "WebODM"
-APP_NAME = "ensight+"
+APP_NAME = "ensight"
 APP_DEFAULT_LOGO = os.path.join('app', 'static', 'app', 'img', 'logo512.png')
 
 # In single user mode, a default admin account is created and automatically
